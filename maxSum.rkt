@@ -9,10 +9,14 @@
 ;all posssible sub-lists
 ;-------
 
-(define (maxSum prompt)
+(define (getList prompt)
 (display prompt)
-(read (open-input-string (format "(~a)" (read-line))))
+(read (open-input-string (format "(~a)" (read-line)))) ;reading items separated by space
   
 )
-(maxSum "Enter a list: ")
+( define original-list (getList "Enter a list: "))
+
+(display "The original list is : ")
+(display original-list)
+
 
