@@ -9,14 +9,23 @@
 ;all posssible CONSECUTIVE sub-lists
 ;-------
 
-(define (deriveList lst lst2)
-  (let loop ((alst lst) (mainlst lst2) (templist lst2) )
+(define (deriveList lst)
+  (let loop ((alst lst) (mainlst '()) (templist '()) )
     (cond
-      ((empty? alst) (display mainlst))
+      ((empty? alst) mainlst)
       ((not (number? (car alst))) '())
       (else
-       (append lst2 (car alst))
        (loop (cdr alst) (append mainlst (list templist alst))  (append templist (list (car alst)) ) ))
+    )
+  )
+)
+
+(define (valueList lst )
+  (let loop ((alst lst) (mainlst '()) )
+    (cond
+      ((empty? alst)  mainlst)
+      (else
+       (loop (cdr alst) (append mainlst (list (sumIt(car alst))))  ))
     )
   )
 )
@@ -51,9 +60,11 @@
 (display original-list)
 (display "\n")
 (display "The derived list is : ")
-(deriveList original-list temp-list)
+(deriveList original-list)
 (display "\n")
-
+(display "The max sum is : ")
+(findMaxNum ( valueList (deriveList original-list)))
+(display "\n")
 
 (display "\n")
 
