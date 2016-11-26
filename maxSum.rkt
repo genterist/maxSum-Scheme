@@ -9,25 +9,53 @@
 ;all posssible CONSECUTIVE sub-lists
 ;-------
 
-(define (getList prompt)
-  (display prompt)
-  (read (open-input-string (format "(~a)" (read-line)))) ;reading items separated by space
-)
-( define original-list (getList "Enter a list: "))
-
-
-; this function finds the maximum sum of any possible consecutive sub list
-(define (maxSum lst)
-  (let loop ((lst lst) (accum 0))
+(define (deriveList lst lst2)
+  (let loop ((alst lst) (mainlst lst2) )
     (cond
-      ((empty? lst) accum)
-      ((not (number? (car lst))) '())
-      (else (loop (cdr lst) (+ accum (car lst))))
+      ((empty? alst) (display mainlst))
+      ((not (number? (car alst))) '())
+      (else
+       (append lst2 (car alst))
+       (loop (cdr alst) (append mainlst (list (car alst) alst)) ))
+    )
+  )
+)
+
+; this function sums all members of a list
+(define (sumIt lst)
+  (let loop ((alst lst) (accum 0))
+    (cond
+      ((empty? alst) accum)
+      ((not (number? (car alst))) '())
+      (else (loop (cdr alst) (+ accum (car alst))))
     )
   )
 )
 
 
+; this function find the largest number within a list
+(define (findMaxNum lst)
+  (foldl (lambda (e r) (if (or (not r) (> e r)) e r))
+         #f
+         lst))
+
+;*********************
+;MAIN PROGRAM
+(define temp-list '())
+(define (getList prompt)
+  (display prompt)
+  (read (open-input-string (format "(~a)" (read-line)))) ;reading items separated by space
+)
+( define original-list (getList "Enter a list: "))
+(display "The original list is : ")
+(display original-list)
+(display "\n")
+(display "The derived list is : ")
+(deriveList original-list temp-list)
+(display "\n")
+
+
+(display "\n")
 
 
 
