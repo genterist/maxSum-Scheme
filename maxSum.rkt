@@ -10,13 +10,13 @@
 ;-------
 
 (define (deriveList lst lst2)
-  (let loop ((alst lst) (mainlst lst2) )
+  (let loop ((alst lst) (mainlst lst2) (templist lst2) )
     (cond
       ((empty? alst) (display mainlst))
       ((not (number? (car alst))) '())
       (else
        (append lst2 (car alst))
-       (loop (cdr alst) (append mainlst (list (car alst) alst)) ))
+       (loop (cdr alst) (append mainlst (list templist alst))  (append templist (list (car alst)) ) ))
     )
   )
 )
