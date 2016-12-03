@@ -1,7 +1,4 @@
 #lang racket
-; Tam N. Nguyen
-; cs4250 hw 6
-; date 11/28/2016
 
 ;This program will take a list and return
 ;the maximum sum value of a sublist among
